@@ -1,10 +1,10 @@
 fis.set('project.files', '*.html');
 
-// fis.media('dev')
-//   .match('**', {
-//     useHash: false,
-//     useDomain: false
-//   });
+fis.media('dev')
+  .match('**', {
+    useHash: false,
+    useDomain: false
+  });
 
 
 fis.match('*.html', {
