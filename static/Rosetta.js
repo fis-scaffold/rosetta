@@ -54,6 +54,7 @@ var utils = {},
 
     var rosettaElem = {
         plainDom: {
+            content: 'content',
             a: 'a',
             abbr: 'abbr',
             address: 'address',
@@ -187,8 +188,14 @@ var utils = {},
             svg: 'svg',
             text: 'text',
             tspan: 'tspan'
-        }
+        },
 
+        supportEvent: {
+            // 只支持原生的
+            onClick: 'click',
+            onTouchStart: 'touchstart',
+            onTouchEnd: 'touchend'
+        }
     };
 
 
@@ -236,7 +243,7 @@ var utils = {},
     var createElemClassFactory = function(type, renderFunc) {
         return (function(type, renderFunc) {
             function CustomElement (options) {
-              utils.extend(this, options, true);
+              utils.extend(this, options || {}, true);
             }
 
             function update (options) {
@@ -324,37 +331,33 @@ var utils = {},
 
     Rosetta = (function() {
         function parse (parent) {
-            var node = parent.children,
-                elemType = node.tagName.toLowerCase(),
-                attrs = node.attributes,
-                elemClass = Rosetta.getElemClass(type),
-                root = document.createElement('div');
+            var js = parent.innerHTML.replace(/&lt;!\[CDATA\[|\]\]&gt;/g, '');
 
-            root.setAttribute('class', elemType);
-            parent.parent().replaceChild(root, parent);
+            eval(js);
+        }
 
-            var obj = Rosetta.create(elemType, attrs, child);
-            Rosetta.render(obj, root);
-        };
-
-        function run () {
-            var elems = $('textarea[type="r-element"]');
-            for (var i = 0; i <= elems.length; i++) {
+        function init () {
+            var elems = document.querySelectorAll('textarea[type="r-element"]');
+            for (var i = 0; i < elems.length; i++) {
                 var item = elems[i];
                 parse(item);
             }
-        };
+        }
 
-        function query (selector) {
-            return document.querySelectAll(selector);
-        };
+        var refers = {};
 
         return {
-            run: run,
+            init: init,
 
             _elemClass: {},
 
-            ref: {},
+            ref: function(key, value) {
+                if (value) {
+                    refers[key] = value;
+                } else {
+                    return refers[key];
+                }
+            },
 
             getElemClass: function(type) {
                 return this._elemClass[type];
@@ -365,73 +368,139 @@ var utils = {},
             },
 
             addElem: function(name, elemObj) {
-                this.ref[name] = elemObj;
+                refers[name] = elemObj;
             },
 
-            render: function(elemObj, root) {
+            render: function(obj, root) {
                 if (utils.isString(root)) {
                     root = document.querySelector(root);
                 }
 
-                if (utils.isDomNode(elemObj)) {
-                    root.appendChild(elemObj);
-                } else if (elemObj.isRosettaElem == true) {
-                    elemObj.root = root;
-                    elemObj.renderFunc(elemObj)
-                    elemObj.root.appendChild(elemObj.tmpl());
+                if (!obj) {
+                    return;
                 }
 
-                // 递归render，处理事件绑定
+                if (obj.isRosettaElem == true) {
+                    obj.renderFunc(obj);
+                    obj.root = obj.__t(obj, obj.attr, obj.ref);
+                    obj.holder = {};
+                    var contents = obj.root.querySelectorAll('content');
 
-                elemObj.trigger(ATTACHED);
+                    for (var i = 0; i < contents.length; i++) {
+                        var item = contents[i];
+                        obj.holder[item.getAttribute('selector')] = item;
+                    }
+
+                    // deal with content
+                    var tmp = document.createDocumentFragment();
+                    if (obj.children && obj.children.length > 0) {
+                        for (var i = 0; i < obj.children.length; i++) {
+                            var item = obj.children[i];
+
+                            tmp.appendChild(item);
+                        }
+
+                        for (var i in obj.holder) {
+                            var dom = obj.holder[i];
+                            var newDom = tmp.querySelectorAll(i);
+                            if (newDom.length > 0) {
+                                var container = document.createElement('div');
+                                container.setAttribute('class', '.content');
+                                dom.parentElement.replaceChild(container, dom);
+                                for (var j = 0; j < newDom.length; j++) {
+                                    container.appendChild(newDom[j]);
+                                }
+                            } else {
+                                dom.parentElement.removeChild(dom);
+                            }
+                        }
+                    }
+                } else if (utils.isDomNode(obj)) {
+                    obj.root = obj;
+                }
+
+                for (var i in obj.attr) {
+                    var item = obj.attr[i];
+                    if (!utils.supportEvent[i]) {
+                        obj.root.setAttribute(i, item);
+                    } else {
+                        obj.root.addEventListener(utils.supportEvent[i], item, false);
+                    }
+                }
+
+                if (utils.isDomNode(root) && root.getAttribute('type') == 'r-element') {
+                    root.parentElement.replaceChild(obj.root, root);
+                    obj.trigger(ATTACHED);
+                } else {
+                    if (root.isRosettaElem == true) {
+                        root.children = root.children || [];
+
+                        root.children.push(obj);
+                    } else {
+                        if (obj.root) {
+                            root.appendChild(obj.root);
+                        } else if (utils.isString(obj)) {
+                            root.innerHTML = obj;
+                        }
+
+                    }
+                }
             },
 
             create: function(type, attr) {
                 var children = [].slice.call(arguments, 2),
-                    result = utils.toPlainArray(children);
+                    children = utils.toPlainArray(children),
+                    result = null;
+
+                attr = attr || {};
+                if (utils.isString(attr)) {
+                    attr = JSON.parse(attr);
+                }
 
                 if (utils.isString(type)) {
                     if (utils.isOriginalTag(type)) {
                         var node = document.createElement(type);
-                        if (utils.isString(attr)) {
-                            attr = JSON.parse(attr);
-                        }
+                        node.attr = attr;
 
-                        for (var i in attr) {
-                            node.setAttribute(i, attr[i]);
-                        }
-
-                        node.children = result;
-                        node.trigger(CREATED);
-
-                        return node;
+                        result = node;
 
                     } else {
                         var NewClass = this.getElemClass(type),
                             options = {
-                                attr: attr
-                            };
+                                attr: attr || {}
+                            },
+                            elemObj = null;
 
                         if (!!NewClass) {
                             elemObj = new NewClass(options);
-                            elemObj.name = attr.name;
-                            if (!!attr.name) {
-                                Rosetta.addElem(attr.name, elemObj);
+                            elemObj.name = attr.ref? attr.ref: '';
+                            if (!!attr.ref) {
+                                Rosetta.addElem(attr.ref, elemObj);
                             }
 
-                            elemObj.children = result;
                             elemObj.trigger(CREATED);
                         }
 
-                        return elemObj;
+                        result = elemObj;
                     }
+
+                    if (!!result) {
+                        for (var i = 0; i < children.length; i++) {
+                            var item = children[i];
+                            // content的判断
+
+                            Rosetta.render(item, result);
+                        }
+                    }
+
+                    return result;
                 }
 
             },
 
             register: function(type, renderFunc) {
                 var elemClass = createElemClassFactory(type, renderFunc);
-                this.addElemClass(type, elemClass);
+                Rosetta.addElemClass(type, elemClass);
                 return elemClass;
             }
         };
