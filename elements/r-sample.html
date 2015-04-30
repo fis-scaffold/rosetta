@@ -1,0 +1,44 @@
+<element name="r-sample" on-attached={onclick}>
+    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    <style type="text/x-scss">
+    @import 'mixin';
+    :host {
+        background: red;
+
+        a {
+          color: yellow;
+        }
+    }
+    </style>
+    <template>
+      <!--comment-->
+      <link rel="import" href="/elements/r-sampleb.html">
+      <r-sampleb></r-sampleb>
+      <ul>
+        {(attrs.list || []).map(function(item, index) {
+          var className = 'bla-' + index;
+
+          return (
+            <li class={className}>{item}</li>
+          )
+        })}
+
+      </ul>
+      <a ref="a" onClick={onclick}>
+        <content></content>
+      </a>
+    </template>
+    <script type="text/javascript" src="/static/lib.js"></script>
+    <script type="text/javascript">
+    Rosetta.register('r-sample', function(tag) {
+        alert(1);
+        function onclick() {
+            alert('blabla');
+        }
+
+        tag.toggle = function() {
+
+        };
+    });
+    </script>
+</element>

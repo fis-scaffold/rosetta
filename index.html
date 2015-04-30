@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Application</title>
+    <meta charset="utf-8">
+    <!--STYLE_PLACEHOLDER-->
+</head>
+<body>
+    <div id="wrap">
+        <nav>todo</nav>
+
+        <div class="body">
+            <link rel="import" href="/elements/r-sample.html" />
+            <r-sample ref="abc" list="">
+                <p>blabla</p>
+                <ul>
+                    <li>fdsfds</li>
+                    <li>fdsfds</li>
+                    <li>fdsfds</li>
+                </ul>
+            </r-sample>
+
+            <link rel="import" href="/elements/r-sampleb.html" />
+            <r-sampleb ref="testb">
+                <p>blabla</p>
+            </r-sampleb>
+
+        </div>
+
+        <footer>todo</footer>
+    </div>
+    <script type="text/javascript" src="/static/Rosetta.js"></script>
+    <!--SCRIPT_PLACEHOLDER-->
+    <!--RESOURCEMAP_PLACEHOLDER-->
+    <script type="text/javascript">
+      Rosetta.init();
+      Rosetta.ref('abc').update({
+        list: [1, 2, 3]
+      })
+    </script>
+</body>
+</html>
