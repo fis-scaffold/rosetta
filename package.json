@@ -1,0 +1,29 @@
+{
+  "name": "Rosetta App",
+  "version": "1.0.0",
+  "description": "Rosetta template for fis scaffold",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fis-scaffold/rosetta.git"
+  },
+  "keywords": [
+    "fis",
+    "scaffold",
+    "rosetta",
+    "webcomponent"
+  ],
+  "author": "fex & 移动云平台",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/fis-scaffold/rosetta/issues"
+  },
+  "homepage": "https://github.com/fis-scaffold/rosetta",
+  "dependencies": {
+    "fis3": "^1.0.0",
+    "fis3-parser-rosetta": "^1.0.0"
+  }
+}
