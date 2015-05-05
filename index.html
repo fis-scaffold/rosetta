@@ -11,18 +11,20 @@
 
         <div class="body">
             <link rel="import" href="/elements/r-sample.html" />
-            <r-sample ref="abc">
+            <r-sample ref="abc" list=[1,2,3]>
                 <p>blabla</p>
                 <ul>
                     <li>fdsfds</li>
                     <li>fdsfds</li>
                     <li>fdsfds</li>
                 </ul>
+                <div>我是不会显示的</div>
             </r-sample>
 
             <link rel="import" href="/elements/r-sampleb.html" />
             <r-sampleb ref="testb">
                 <p>blabla</p>
+                <div class="show">我是可见的</div>
             </r-sampleb>
 
         </div>
