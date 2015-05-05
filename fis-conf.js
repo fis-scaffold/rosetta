@@ -4,10 +4,7 @@ fis.match('*.html', {
   parser: fis.plugin('rosetta')
 });
 
-// default settings. fis3 release
 fis
-  .media('dev')
-
   .match('*.{css,js,html}', {
     useMap: true
   });
