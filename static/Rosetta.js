@@ -97,19 +97,6 @@
                 );
         }
 
-        function deserializeValue(value) {
-            try {
-                return value ?
-                    value == "true" ||
-                    (value == "false" ? false :
-                        value == "null" ? null :
-                        +value + "" == value ? +value :
-                        /^[\[\{]/.test(value) ? JSON.parse(value) :
-                        value) : value
-            } catch (e) {
-                return value
-            }
-        }
 
         var plainDom = {
                 content: 'content',
@@ -413,19 +400,6 @@
                 })(type, renderFunc);
             }
 
-            // function parse(parent) {
-            //     var js = (/\[CDATA\[([\s\S]*?)\]\]/ig).exec(parent.innerHTML)[1];
-            //     (new Function('', js))();
-            // }
-
-            // function init() {
-            //     var elems = query('textarea[type="r-element"]');
-            //     for (var i = 0; i < elems.length; i++) {
-            //         var item = elems[i];
-            //         parse(item);
-            //     }
-            // }
-
 
             function init() {
                 var elems = query('.r-element');
@@ -437,11 +411,7 @@
 
                     if (type.indexOf('r-') == 0) {
                         var children = item.children,
-                            childrenArr = [];
-
-                        for (var j = 0; j < children.length; j++) {
-                            childrenArr[j] = children[j];
-                        }
+                            childrenArr = [].slice.call(children);
 
                         for (var n = 0; n < attrs.length; n++) {
                             var attr = attrs[n];
@@ -543,8 +513,6 @@
                 }
 
                 if (obj.isRosettaElem == true) {
-                    obj.renderFunc(obj);
-
                     obj.root = obj.__t(obj, obj.attrs, obj.ref);
 
                     replaceContent(obj);
@@ -581,16 +549,36 @@
                 }
             }
 
+            function toType(attr) {
+                var value = null;
+
+                try {
+                    value = eval(attr);
+
+                    if (isArray(value)) {
+                        value.map(function(item, index) {
+                            value[index] = toType(item);
+                        });
+                    } else {
+                        for (var i in value) {
+                            var v = value[i];
+                            value[i] = toType(v);
+                        }
+                    }
+                } catch (e) {
+                    value = attr;
+                }
+
+                return value;
+            }
+
+            // create的trigger之前执行renderfunc
             function create(type, attr) {
                 var children = [].slice.call(arguments, 2),
                     children = toPlainArray(children),
                     result = null;
 
-                attr = deserializeValue(attr) || {};
-
-                for (var i in attr) {
-                    attr[i] = deserializeValue(attr[i]);
-                }
+                attr = toType(attr || '');
 
                 if (isString(type)) {
                     if (isOriginalTag(type)) {
@@ -601,19 +589,10 @@
 
                     } else {
                         var NewClass = getElemClass(type),
-                            options = {
-                                attrs: attr || {}
-                            },
                             elemObj = null;
 
                         if (!!NewClass) {
-                            elemObj = new NewClass(options);
-                            elemObj.name = attr.ref ? attr.ref : '';
-                            if (!!attr.ref) {
-                                addElem(attr.ref, elemObj);
-                            }
-
-                            elemObj.trigger(CREATED);
+                            elemObj = new NewClass();
                         }
 
                         result = elemObj;
@@ -626,6 +605,17 @@
 
                             render(item, result);
                         }
+                    }
+
+                    if (isString(type) && !isOriginalTag(type)) {
+                        elemObj.renderFunc(elemObj);
+                        elemObj.name = attr.ref ? attr.ref : '';
+                        if (!!attr.ref) {
+                            addElem(attr.ref, elemObj);
+                        }
+
+                        extend(elemObj.attrs, attr, true);
+                        elemObj.trigger(CREATED);
                     }
 
                     return result;
