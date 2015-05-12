@@ -25,6 +25,6 @@
   "dependencies": {
     "fis3": "^1.0.0",
     "fis3-parser-rosetta": "^1.0.0",
-    "fis-postpackager-autoload": "0.0.20"
+    "fis-postpackager-rosetta": "^1.0.0"
   }
 }
