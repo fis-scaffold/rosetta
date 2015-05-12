@@ -413,7 +413,7 @@
 
 
             function init() {
-                var elems = query('[ref]');
+                var elems = query('.r-element');
                 for (var i = 0; i < elems.length; i++) {
                     var item = elems[i],
                         type = item.tagName.toLowerCase(),
