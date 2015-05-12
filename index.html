@@ -12,7 +12,12 @@
 
         <div class="body">
             <link rel="import" href="/elements/r-tabs.html" />
-            <r-tabs ref="tabs"></r-tabs>
+            <r-tabs></r-tabs>
+
+            <r-tabs items={[{title: "卡片1", selector: ".content1"}, {title: "卡片2", selector: ".content2"}]}>
+              <div class="content1">内容 1</div>
+              <div class="content2">内容 1</div>
+            </r-tabs>
         </div>
         <footer>todo</footer>
     </div>
