@@ -1,0 +1,96 @@
+<element name="tabs">
+    <style type="text/css">
+    :host {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    :host-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+        z-index: 11;
+      position: relative;
+    }
+    :host-content {
+      position: relative;
+      min-height: 100px;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+        overflow: hidden;
+        -webkit-transition: height 200ms ease-in-out;
+    }
+    :host-content :host-panel {
+      display: none;
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+        min-height: 100px;
+    }
+    :host-panel {
+        -webkit-transform: translateZ(0);
+    }
+    :host-content :host-panel.ui-state-active, .ui-viewport-transitioning :host-panel.out {
+      display: block;
+        z-index: 1;
+    }
+    :host-content :host-panel.ui-state-active {
+        z-index: 2;
+    }
+    </style>
+    <template>
+        <ul class="ui-tabs-nav">
+          {(attrs.items || []).map(function(item, index) {
+            // item.title 为 tabs 的标题
+            // item.content 为 tabs 的内容，
+            // item.selector 与 content 二选一
+
+            var clsName = '';
+
+            if (attrs.index === index) {
+              clsName = 'ui-state-active';
+            }
+
+            return (
+              <li class={clsName}>
+                <a href="javascript:;">{item.title || '选项卡'}</a>
+              </li>
+            )
+          })}
+        </ul>
+
+        <div class="ui-viewport ui-tabs-content">
+          {(attrs.items || []).map(function(item, index) {
+            var clsName = 'ui-tabs-panel';
+
+            if (attrs.index === index) {
+              clsName += ' ui-state-active';
+            }
+
+            return (
+              <div class={clsName}>
+                {item.content ? item.content : (
+                  <content selector={item.selector}></content>
+                )}
+              </div>
+            )
+          })}
+        </div>
+    </template>
+    <script type="text/javascript">
+    Rosetta.register('tabs', function(tag) {
+
+      // 初始化 attribues
+      tag.attrs = {
+        index: 0,
+        items: [
+          {
+            title: '选项卡1',
+            content: '内容1'
+          }
+        ]
+      };
+
+    });
+    </script>
+</element>
