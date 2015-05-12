@@ -7,6 +7,9 @@ fis
   .match('*.{css,js,html}', {
     useMap: true
   })
+  .match('/elements/*.html', {
+    rExt: '.js'
+  })
   .set('modules.postpackager', fis.plugin('rosetta'))
 
 // 在 dev 环境下关闭文件 md5 hash
@@ -33,6 +36,13 @@ fis
   // 压缩 png
   .match('*.png', {
     optimizer: fis.plugin('png-compressor')
+  })
+
+  // 配置开启是否编译 element 使用模板。
+  .match('/elements/*.html', {
+    parser: fis.plugin('rosetta', {
+      compileUsage: true
+    })
   })
 
   // 通过 rosetta 插件优化资源。
