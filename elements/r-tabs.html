@@ -30,16 +30,16 @@
     :host-panel {
         -webkit-transform: translateZ(0);
     }
-    :host-content :host-panel.ui-state-active, .ui-viewport-transitioning :host-panel.out {
+    :host-content :host-panel.r-state-active, .r-viewport-transitioning :host-panel.out {
       display: block;
         z-index: 1;
     }
-    :host-content :host-panel.ui-state-active {
+    :host-content :host-panel.r-state-active {
         z-index: 2;
     }
     </style>
     <template>
-        <ul class="ui-tabs-nav">
+        <ul class="r-tabs-nav">
           {(attrs.items || []).map(function(item, index) {
             // item.title 为 tabs 的标题
             // item.content 为 tabs 的内容，
@@ -48,7 +48,7 @@
             var clsName = '';
 
             if (attrs.index === index) {
-              clsName = 'ui-state-active';
+              clsName = 'r-state-active';
             }
 
             return (
@@ -59,12 +59,12 @@
           })}
         </ul>
 
-        <div class="ui-viewport ui-tabs-content">
+        <div class="r-viewport r-tabs-content">
           {(attrs.items || []).map(function(item, index) {
-            var clsName = 'ui-tabs-panel';
+            var clsName = 'r-tabs-panel';
 
             if (attrs.index === index) {
-              clsName += ' ui-state-active';
+              clsName += ' r-state-active';
             }
 
             return (
