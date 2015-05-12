@@ -367,6 +367,19 @@
                     }
 
 
+                    function create(type, attr) {
+                        var obj = Rosetta.create.apply(Rosetta, arguments);
+                        if (!!attr && !!attr.ref) {
+                            if (obj.isRosettaElem == true) {
+                                this.refs[attr.ref] = obj.root;
+                            } else if (isDomNode(obj)) {
+                                this.refs[attr.ref] = obj;
+                            }
+                        }
+
+                        return obj;
+                    }
+
                     CustomElement.prototype = {
                         type: type,
 
@@ -380,7 +393,7 @@
 
                         isRosettaElem: true,
 
-                        ref: {},
+                        refs: {},
 
                         events: {},
 
@@ -390,7 +403,9 @@
 
                         off: off,
 
-                        once: once
+                        once: once,
+
+                        create: create
                     }
 
                     return CustomElement;
