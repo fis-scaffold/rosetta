@@ -30,22 +30,36 @@
             return typeof value == 'object';
         }
 
-        function extend(target, source, deep) {
-            for (key in source) {
-                if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
-                    if (isPlainObject(source[key]) && !isPlainObject(target[key])) {
-                        target[key] = {};
-                    }
+        function extend(target) {
+            var end = [].slice.call(arguments, arguments.length - 2),
+                deep = false,
+                params = null;
 
-                    if (isArray(source[key]) && !isArray(target[key])) {
-                        target[key] = [];
-                    }
-
-                    extend(target[key], source[key], deep);
-                } else if (source[key] !== undefined) {
-                    target[key] = source[key];
-                }
+            if (end === true) {
+                deep = true;
+                params = [].slice.call(arguments, 1, arguments.length - 2);
+            } else {
+                params = [].slice.call(arguments, 1);
             }
+
+            params.map(function(source, index) {
+                for (key in source) {
+                    if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
+                        if (isPlainObject(source[key]) && !isPlainObject(target[key])) {
+                            target[key] = {};
+                        }
+
+                        if (isArray(source[key]) && !isArray(target[key])) {
+                            target[key] = [];
+                        }
+
+                        extend(target[key], source[key], deep);
+                    } else if (source[key] !== undefined) {
+                        target[key] = source[key];
+                    }
+                }
+            });
+
             return target;
         }
 
@@ -294,19 +308,31 @@
             function createElemClassFactory(type, renderFunc) {
                 return (function(type, renderFunc) {
                     function CustomElement(options) {
-                        extend(this, options || {}, true);
+                        extend(this, {
+                            type: type,
+
+                            name: name,
+
+                            renderFunc: renderFunc,
+
+                            refs: {},
+
+                            events: {},
+
+                            isAttached: false
+                        }, options || {}, true);
                     }
 
                     function update(options) {
                         extend(this.attrs, options, true);
-                        this.trigger(ATTRIBUTECHANGE);
+                        this.trigger(ATTRIBUTECHANGE, this);
                     }
 
                     function destroy() {
                         this.off();
                         this.root.remove();
                         delete ref(this.name);
-                        this.trigger(DETACHED);
+                        this.trigger(DETACHED, this);
                     }
 
                     function on(type, listener, context, ifOnce) {
@@ -367,22 +393,13 @@
                         return obj;
                     }
 
+
                     CustomElement.prototype = {
-                        type: type,
-
-                        name: name,
-
                         update: update,
 
                         destroy: destroy,
 
-                        renderFunc: renderFunc,
-
                         isRosettaElem: true,
-
-                        refs: {},
-
-                        events: {},
 
                         on: on,
 
@@ -392,11 +409,9 @@
 
                         once: once,
 
-                        create: create,
+                        create: create
 
-                        isAttached: false
-
-                    }
+                    };
 
                     return CustomElement;
 
@@ -526,7 +541,7 @@
                 for (var i in obj.attrs) {
                     var item = obj.attrs[i];
                     if (!supportEvent[i]) {
-                        obj.root.setAttribute(i, item);
+                        obj.root.setAttribute(i, item || '');
                     } else {
                         obj.root.addEventListener(supportEvent[i], item, false);
                     }
@@ -534,7 +549,7 @@
 
                 if ((isDomNode(root) && root.getAttribute('type') == 'r-element') || force == true) {
                     root.parentElement.replaceChild(obj.root, root);
-                    obj.trigger(ATTACHED);
+                    obj.trigger(ATTACHED, obj);
                     obj.isAttached = true;
                     return obj.root;
                 } else {
@@ -619,7 +634,8 @@
                         }
 
                         extend(elemObj.attrs, attr, true);
-                        elemObj.trigger(CREATED);
+
+                        elemObj.trigger(CREATED, elemObj);
                     }
 
                     return result;
