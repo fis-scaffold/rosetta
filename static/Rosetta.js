@@ -392,7 +392,10 @@
 
                         once: once,
 
-                        create: create
+                        create: create,
+
+                        isAttached: false
+
                     }
 
                     return CustomElement;
@@ -532,6 +535,7 @@
                 if ((isDomNode(root) && root.getAttribute('type') == 'r-element') || force == true) {
                     root.parentElement.replaceChild(obj.root, root);
                     obj.trigger(ATTACHED);
+                    obj.isAttached = true;
                     return obj.root;
                 } else {
                     if (root.isRosettaElem == true) {
