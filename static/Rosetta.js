@@ -324,7 +324,20 @@
                     }
 
                     function update(options) {
-                        extend(this.attrs, options, true);
+                        // extend(this.attrs, options, true);
+                        var children = this.children,
+                            attrs = this.root.attributes,
+                            root = this.root,
+                            type = this.type,
+                            attr = {};
+
+                        for (var n = 0; n < attrs.length; n++) {
+                            var item = attrs[n];
+                            attr[item.name] = item.nodeValue;
+                        }
+
+                        extend(attr, options, true);
+                        Rosetta.render(Rosetta.create(type, attr, children), root, true);
                         this.trigger(ATTRIBUTECHANGE, this);
                     }
 
