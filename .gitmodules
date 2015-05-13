@@ -1,0 +1,3 @@
+[submodule "static/rosetta"]
+	path = static/rosetta
+	url = git://github.com/jiexuangao/rosetta.git
