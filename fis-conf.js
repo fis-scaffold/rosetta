@@ -1,7 +1,7 @@
 fis.set('project.files', '*.html');
 
 fis
-  .match('Rosetta.js', {
+  .match('*.js', {
     isMod: false
   })
 
