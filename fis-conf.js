@@ -1,6 +1,12 @@
 fis.set('project.files', '*.html');
 
 fis
+  .match('Rosetta.js', {
+    isMod: false
+  })
+
+
+fis
   .match('*.html', {
     parser: fis.plugin('rosetta')
   })
@@ -22,7 +28,6 @@ fis
 // fis3 release production
 fis
   .media('production')
-
   // 压缩 js 通过 uglify
   .match('*.js', {
     optimizer: fis.plugin('uglify-js')
