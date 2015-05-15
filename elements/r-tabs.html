@@ -154,10 +154,10 @@
         }
 
         console.log('switch to %d', index);
-        // tag.update({
-        //   index: index
-        // });
-        //
+        tag.update({
+          index: index
+        });
+
         $(tag.refs.ul).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
         $(tag.refs.viewport).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
         attrs.index = index;
