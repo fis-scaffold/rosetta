@@ -108,7 +108,7 @@
           })}
         </ul>
 
-        <div class="r-viewport content">
+        <div ref="viewport" class="r-viewport content">
           {(attrs.items || []).map(function(item, index) {
             var clsName = 'panel';
 
@@ -128,6 +128,7 @@
     </template>
     <script type="text/javascript">
     Rosetta.register('r-tabs', function(tag) {
+      var $ = Zepto;
 
       // 初始化 attribues
       var attrs = tag.attrs = {
@@ -151,11 +152,21 @@
         if (index === attrs.index) {
           return;
         }
+
+        console.log('switch to %d', index);
+        // tag.update({
+        //   index: index
+        // });
+        //
+        $(tag.refs.ul).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
+        $(tag.refs.viewport).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
+        attrs.index = index;
       };
 
       function onAttached() {
-        tag.refs.ul.addEventListener('click', function(e) {
-
+        $(tag.refs.ul).on('click', 'li', function() {
+          tag.switchTo($(this).index());
+          return false;
         });
       }
     });
