@@ -1,9 +1,6 @@
 <element name="r-tabs" onAttached={onAttached}>
     <style type="text/css">
     /*Structor*/
-    :host {
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-    }
     :host .nav {
       list-style: none;
       padding: 0;
@@ -30,13 +27,6 @@
     }
     :host .panel {
         -webkit-transform: translateZ(0);
-    }
-    :host .content .panel.r-state-active, .r-viewport-transitioning :host .panel.out {
-      display: block;
-        z-index: 1;
-    }
-    :host .content .panel.r-state-active {
-        z-index: 2;
     }
 
     /*Theme*/
@@ -74,17 +64,6 @@
     }
     :host .content .panel {
         padding: 1em;
-    }
-    :host .panel .ui-loading {
-        position: absolute;
-        left: 50%;
-        top: 50px;
-        margin-top: -20px;
-        margin-left: -20px;
-    }
-    :host .panel .ui-load-error {
-        color: red;
-        text-align: center;
     }
     </style>
     <template>
