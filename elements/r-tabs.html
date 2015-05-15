@@ -28,6 +28,13 @@
     :host .panel {
         -webkit-transform: translateZ(0);
     }
+    :host .content .panel.r-state-active, .r-viewport-transitioning :host .panel.out {
+      display: block;
+      z-index: 1;
+    }
+    :host .content .panel.r-state-active {
+        z-index: 2;
+    }
 
     /*Theme*/
     :host .nav {
