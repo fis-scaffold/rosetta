@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 </head>
-<body>
+<body onload="load()">
     <div id="wrap">
 
         <div class="body">
@@ -223,17 +223,17 @@
 
                 var old = +localStorage.getItem('rendertimeBoost') || 0;
                 var count = +localStorage.getItem('countBoost') || 0;
-                var newTime = (renderTime + old)/2;
+                var newTime = renderTime + old;
                 localStorage.setItem('rendertimeBoost', newTime);
                 localStorage.setItem('countBoost', ++count);
 
-                if (count < 100) {
+                if (count < 30) {
                     location.reload();
+                } else {
+                    localStorage.setItem('rendertimeBoost', newTime/30);
                 }
             }, 500);
         }
-
-        document.body.addEventListener('load', load);
     </script>
 </body>
 </html>
