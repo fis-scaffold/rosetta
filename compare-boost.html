@@ -224,13 +224,15 @@
                 var old = +localStorage.getItem('rendertimeBoost') || 0;
                 var count = +localStorage.getItem('countBoost') || 0;
                 var newTime = renderTime + old;
+                var k = 100;
+
                 localStorage.setItem('rendertimeBoost', newTime);
                 localStorage.setItem('countBoost', ++count);
 
-                if (count < 30) {
+                if (count < k) {
                     location.reload();
                 } else {
-                    localStorage.setItem('rendertimeBoost', newTime/30);
+                    localStorage.setItem('rendertimeBoost', newTime/k);
                 }
             }, 500);
         }

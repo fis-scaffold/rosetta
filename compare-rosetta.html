@@ -236,13 +236,15 @@
                 var old = +localStorage.getItem('rendertimeRosetta') || 0;
                 var count = +localStorage.getItem('countRosetta') || 0;
                 var newTime = renderTime + old;
+                var k = 100;
+
                 localStorage.setItem('rendertimeRosetta', newTime);
                 localStorage.setItem('countRosetta', ++count);
 
-                if (count < 30) {
+                if (count < k) {
                     location.reload();
                 } else {
-                    localStorage.setItem('rendertimeRosetta', newTime/30);
+                    localStorage.setItem('rendertimeRosetta', newTime/k);
                 }
             }, 500);
         }
