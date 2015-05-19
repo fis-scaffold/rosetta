@@ -217,24 +217,22 @@
     <script type="text/javascript" src="/static/rosetta/dist/Rosetta.js"></script>
 
     <script type="text/javascript">
-        $('.blend-slider').slider({"speed": 2000, "ratio": "small"});
-
         function load() {
             setTimeout(function() {
                 var renderTime = performance.timing.loadEventEnd-performance.timing.responseEnd;
 
-                var old = +localStorage.getItem('rendertimeBoost') || 0;
-                var count = +localStorage.getItem('countBoost') || 0;
+                var old = +localStorage.getItem('rendertimePlain') || 0;
+                var count = +localStorage.getItem('countPlain') || 0;
                 var newTime = renderTime + old;
                 var k = 100;
 
-                localStorage.setItem('rendertimeBoost', newTime);
-                localStorage.setItem('countBoost', ++count);
+                localStorage.setItem('rendertimePlain', newTime);
+                localStorage.setItem('countPlain', ++count);
 
                 if (count < k) {
                     location.reload();
                 } else {
-                    localStorage.setItem('rendertimeBoost', newTime/k);
+                    localStorage.setItem('rendertimePlain', newTime/k);
                 }
             }, 500);
         }
