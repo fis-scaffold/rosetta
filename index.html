@@ -28,6 +28,24 @@
             var slider = Rosetta.ref('slider');
 
             tabs2.switchTo(1);
+
+            tabs2.on('attributeChange', function() {
+                console.log(tabs2.attrs.items[0]);
+            });
+
+            tabs2.update({
+                items: [
+                    {
+                        title: 'gaojiexuan',
+                        content: '内容1'
+                    },
+
+                    {
+                        title: '选项卡2',
+                        content: '内容2'
+                    }
+                ]
+            });
         });
 
     </script>
