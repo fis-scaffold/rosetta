@@ -26,3 +26,8 @@ fis3 server start
 ```
 fis3 release -d ./output --media production
 ```
+
+## 自动生成新的element脚手架
+```
+    fis3 init element
+```
