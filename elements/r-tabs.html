@@ -114,7 +114,7 @@
     </template>
     <script type="text/javascript">
     Rosetta.register('r-tabs', function(tag) {
-      var $ = Zepto;
+      // var $ = Zepto;
 
       // 初始化 attribues
       var attrs = tag.attrs = {
@@ -150,10 +150,10 @@
       };
 
       function onAttached() {
-        $(tag.refs.ul).on('click', 'li', function() {
-          tag.switchTo($(this).index());
-          return false;
-        });
+        // $(tag.refs.ul).on('click', 'li', function() {
+        //   tag.switchTo($(this).index());
+        //   return false;
+        // });
       }
     });
     </script>
