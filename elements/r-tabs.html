@@ -112,6 +112,8 @@
           })}
         </div>
     </template>
+    <script type="text/javascript" src="../static/zepto.min.js"></script>
+
     <script type="text/javascript">
     Rosetta.register('r-tabs', function(tag) {
       // var $ = Zepto;
@@ -144,16 +146,16 @@
           index: index
         });
 
-        // $(tag.refs.ul).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
-        // $(tag.refs.viewport).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
-        // attrs.index = index;
+        $(tag.refs.ul).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
+        $(tag.refs.viewport).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
+        attrs.index = index;
       };
 
       function onAttached() {
-        // $(tag.refs.ul).on('click', 'li', function() {
-        //   tag.switchTo($(this).index());
-        //   return false;
-        // });
+        $(tag.refs.ul).on('click', 'li', function() {
+          tag.switchTo($(this).index());
+          return false;
+        });
       }
     });
     </script>
