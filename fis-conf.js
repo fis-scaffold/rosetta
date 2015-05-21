@@ -1,4 +1,4 @@
-fis.set('project.files', '*.html');
+fis.set('project.files', '*.{html,tpl}');
 
 fis
   .match('static/rosetta/**/*.js', {
@@ -10,7 +10,7 @@ fis
 
 
 fis
-  .match('*.html', {
+  .match('*.{html,tpl}', {
     parser: fis.plugin('rosetta')
   })
   .match('*.{css,js,html}', {
@@ -55,11 +55,6 @@ fis
 
   // 通过 rosetta 插件优化资源。
   .set('modules.postpackager', fis.plugin('rosetta', {
-
     // 合并零碎文件
-    allInOne: true,
-
-    // 收集合并 脚本和样式文件。默认只会收集依赖，开启此选项后，页面中所有 js 和 css 都会被收集和合并。
-    obtainScript: true,
-    obtainStyle: true
+    allInOne: true
   }));
