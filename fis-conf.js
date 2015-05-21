@@ -4,7 +4,7 @@ fis
   .match('static/rosetta/**/*.js', {
     isMod: false
   })
-  .match('boostui/**/*.js', {
+  .match('static/jquery.min.js', {
     isMod: false
   })
 
