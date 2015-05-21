@@ -4,6 +4,7 @@
     <title>My Application</title>
     <meta charset="utf-8">
     <script type="text/javascript" src="/static/mod.js"></script>
+    <script type="text/javascript" src="/static/Rosetta.js"></script>
     <script type="text/javascript" src="/static/lib.js"></script>
     <script type="text/javascript">
     require(['/static/modules/a.js', '../static/modules/b.js']);

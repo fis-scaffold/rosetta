@@ -16,7 +16,8 @@ fis3 init rosetta
 
 ```bash
 fis3 release
-fis3 server start
+fis3 server install server-env
+fis3 server start --rewrite --type php
 ```
 
 ## 产出产品代码

@@ -13,8 +13,12 @@ fis
   .match('*.{html,tpl}', {
     parser: fis.plugin('rosetta')
   })
+  .match('*.tpl', {
+    release: '/template/$&'
+  })
   .match('*.{css,js,html}', {
-    useMap: true
+    useMap: true,
+    release: '/static/$&'
   })
   .match('/elements/*.html', {
     rExt: '.js',
