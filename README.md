@@ -21,13 +21,21 @@ fis3 release
 fis3 server start
 ```
 
+## 运行 & 预览 （支持 smarty）
+```bash
+fis3 release
+fis3 server install server-env
+fis3 server start --rewrite --type php
+```
+
+
 ## 产出产品代码
 
-```
+```bash
 fis3 release -d ./output --media production
 ```
 
 ## 自动生成新的element脚手架
-```
+```bash
     fis3 init element
 ```
