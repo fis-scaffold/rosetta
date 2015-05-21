@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/fis-scaffold/rosetta",
   "dependencies": {
-    "fis3": "^1.0.0",
     "fis3-parser-rosetta": "^1.0.0",
     "fis3-postpackager-rosetta": "^1.0.0"
   }
