@@ -50,13 +50,6 @@ fis
     optimizer: fis.plugin('png-compressor')
   })
 
-  // 配置开启是否编译 element 使用模板。
-  .match('/elements/*.html', {
-    parser: fis.plugin('rosetta', {
-      compileUsage: true
-    })
-  })
-
   // 通过 rosetta 插件优化资源。
   .set('modules.postpackager', fis.plugin('rosetta', {
     // 合并零碎文件

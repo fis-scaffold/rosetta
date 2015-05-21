@@ -24,10 +24,11 @@ fis3 server start
 ## 产出产品代码
 
 ```
-fis3 release -d ./output --media production
+fis3 release production -d ./output
 ```
 
 ## 自动生成新的element脚手架
+
 ```
-    fis3 init element
+fis3 init element
 ```
