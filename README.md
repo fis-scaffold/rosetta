@@ -22,13 +22,6 @@ fis3 server install server-env
 fis3 server start --rewrite --type php
 ```
 
-## 运行 & 预览 （支持 smarty）
-```bash
-fis3 release
-fis3 server install server-env
-fis3 server start --rewrite --type php
-```
-
 
 ## 产出产品代码
 
