@@ -1,7 +1,7 @@
 fis.set('project.files', '*.{html,tpl}');
 
 fis
-  .match('static/rosetta/**/*.js', {
+  .match('static/Rosetta.js', {
     isMod: false
   })
   .match('static/jquery.min.js', {
