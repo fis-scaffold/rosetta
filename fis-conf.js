@@ -14,11 +14,11 @@ fis
     parser: fis.plugin('rosetta')
   })
   .match('*.tpl', {
-    release: '/template/$&'
+    release: '/template/$0'
   })
   .match('*.{css,js,html}', {
     useMap: true,
-    release: '/static/$&'
+    release: '/static/$0'
   })
   .match('/elements/*.html', {
     rExt: '.js',
