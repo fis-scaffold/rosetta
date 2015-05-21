@@ -17,7 +17,11 @@ fis
     useMap: true
   })
   .match('/elements/*.html', {
-    rExt: '.js'
+    rExt: '.js',
+    release: '/static/$0'
+  })
+  .match('/elements/*.css', {
+    release: '/static/$0'
   })
   .set('modules.postpackager', fis.plugin('rosetta'))
 
