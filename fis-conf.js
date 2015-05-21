@@ -44,6 +44,11 @@ fis
     optimizer: fis.plugin('uglify-js')
   })
 
+  // 这里面也是 js
+  .match('/elements/*.html', {
+    optimizer: fis.plugin('uglify-js')
+  })
+
   // 压缩 css
   .match('*.css', {
     optimizer: fis.plugin('clean-css')
