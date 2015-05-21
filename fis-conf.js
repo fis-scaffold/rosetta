@@ -13,8 +13,12 @@ fis
   .match('*.{html,tpl}', {
     parser: fis.plugin('rosetta')
   })
+  .match('*.tpl', {
+    release: '/template/$&'
+  })
   .match('*.{css,js,html}', {
-    useMap: true
+    useMap: true,
+    release: '/static/$&'
   })
   .match('/elements/*.html', {
     rExt: '.js',
@@ -37,6 +41,11 @@ fis
   .media('production')
   // 压缩 js 通过 uglify
   .match('*.js', {
+    optimizer: fis.plugin('uglify-js')
+  })
+
+  // 这里面也是 js
+  .match('/elements/*.html', {
     optimizer: fis.plugin('uglify-js')
   })
 

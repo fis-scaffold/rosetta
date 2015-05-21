@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script type="text/javascript" src="/static/Rosetta.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -36,7 +37,6 @@
             </r-tabs>
         </div>
     </div>
-    <script type="text/javascript" src="/static/Rosetta.js"></script>
 
     <script type="text/javascript">
         Rosetta.ready(function() {
