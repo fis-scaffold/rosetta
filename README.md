@@ -1,5 +1,7 @@
 # Rosetta 模板
 
+注意别忘了pull下submodule~
+
 ## 安装 fis3
 
 `npm install fis3 -g`
@@ -23,4 +25,9 @@ fis3 server start
 
 ```
 fis3 release -d ./output --media production
+```
+
+## 自动生成新的element脚手架
+```
+    fis3 init element
 ```
