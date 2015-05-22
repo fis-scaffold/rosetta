@@ -11,7 +11,10 @@
     <template>
       <!--comment-->
       <link rel="import" href="/elements/r-sampleb.html">
-      <r-sampleb></r-sampleb>
+      <r-sampleb>
+        <p>121
+        </p>
+      </r-sampleb>
       <ul>
         {(attrs.list || []).map(function(item, index) {
           var className = 'bla-' + index;
@@ -27,17 +30,19 @@
       </a>
 
       <content selector="ul"></content>
+
     </template>
     <script type="text/javascript" src="/static/lib.js"></script>
     <script type="text/javascript">
     Rosetta.register('r-sample', function(tag) {
         function onclick() {
-            alert('blabla');
+            console.log('blabla');
         }
 
         tag.toggle = function() {
 
         };
     });
+
     </script>
 </element>
