@@ -14,11 +14,11 @@ fis
     parser: fis.plugin('rosetta')
   })
   .match('*.tpl', {
-    release: '/template/$&'
+    release: '/template/$0'
   })
   .match('*.{css,js,html}', {
     useMap: true,
-    release: '/static/$&'
+    release: '/static/$0'
   })
   .match('/elements/*.html', {
     rExt: '.js',
@@ -34,7 +34,7 @@ fis
   .media('dev')
   .match('*.{css,js,html}', {
     useHash: false
-  });
+  })
 
 // fis3 release production
 fis
@@ -59,15 +59,8 @@ fis
     optimizer: fis.plugin('png-compressor')
   })
 
-  // 配置开启是否编译 element 使用模板。
-  .match('/elements/*.html', {
-    parser: fis.plugin('rosetta', {
-      compileUsage: true
-    })
-  })
-
   // 通过 rosetta 插件优化资源。
   .set('modules.postpackager', fis.plugin('rosetta', {
     // 合并零碎文件
     allInOne: true
-  }));
+  }))
