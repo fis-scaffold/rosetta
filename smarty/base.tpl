@@ -40,7 +40,7 @@
                     selector=> ".content3"
                 ]
             ]%}
-            <r-tabs></r-tabs>
+            <r-tabs class="sdsd"></r-tabs>
             <r-tabs items={%json_encode($items)%} class="r-element {%$aa%}" ref={%$ref%}>
               <div class="content1">内容 1</div>
               <div class="content2">内容 2</div>
