@@ -1,7 +1,5 @@
 # Rosetta 模板
 
-注意别忘了pull下submodule~
-
 ## 安装 fis3
 
 `npm install fis3 -g`
@@ -27,7 +25,7 @@ fis3 init rosetta
     ```
 
 - PHP 自带 Server 预览
-    
+
     很 Nice 的告诉大家，php 5.4 以后 ，php 自带一个 Server，可以方便调试 Web 应用 （*听说cookie支持不是很给力，注意*），这样就不需要装 Java 环境了！
 
     ```bash
@@ -40,10 +38,11 @@ fis3 init rosetta
 ## 产出产品代码
 
 ```bash
-fis3 release -d ./output --media production
+fis3 release production -d ./output
 ```
 
 ## 自动生成新的element脚手架
+
 ```bash
-    fis3 init element
+fis3 init element
 ```

@@ -3,7 +3,6 @@
 <head>
     <title>My Application</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="/static/mod.js"></script>
     <script type="text/javascript" src="/static/Rosetta.js"></script>
     <script type="text/javascript" src="/static/lib.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1" />
@@ -34,9 +33,6 @@
               </ul>
           </r-sample>
             {%block name="body"%}{%/block%}
-            <script type="text/javascript">
-            require(['/static/modules/a.js', '../static/modules/b.js']);
-            </script>
         </div>
     </div>
 </body>
