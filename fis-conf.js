@@ -1,15 +1,6 @@
 fis.set('project.files', '*.{html,tpl}');
 
 fis
-  .match('static/Rosetta.js', {
-    isMod: false
-  })
-  .match('static/jquery.min.js', {
-    isMod: false
-  })
-
-
-fis
   .match('*.{html,tpl}', {
     parser: fis.plugin('rosetta')
   })
@@ -21,11 +12,7 @@ fis
     release: '/static/$0'
   })
   .match('/elements/*.html', {
-    rExt: '.js',
-    release: '/static/$0'
-  })
-  .match('/elements/*.css', {
-    release: '/static/$0'
+    rExt: '.js'
   })
   .set('modules.postpackager', fis.plugin('rosetta'))
 
