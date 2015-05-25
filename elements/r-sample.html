@@ -16,13 +16,32 @@
         </p>
       </r-sampleb>
       <ul>
-        {(attrs.list || []).map(function(item, index) {
-          var className = 'bla-' + index;
+        {
+          (function() {
+            var arr = [];
+            var bbb = [];
+            if (attrs.list) {
+              arr.push(1);
+              (attrs.list || []).map(function(item, index) {
+                var className = 'bla-' + index;
 
-          return (
-            <li class={className}>{item}</li>
-          )
-        })}
+                arr.push(<li class={className}>{item}</li>);
+              })
+            }
+
+            bbb.push(<div class="aaaaaaa"><span>gaojiexuan</span>{arr}</div>)
+            return bbb;
+          })()
+        }
+
+        {
+          (function() {
+            if (true) {
+              var a = <div>sdsd</div>
+            }
+            return a;
+          })()
+        }
 
       </ul>
       <a ref="a" onClick={onclick}>

@@ -22,6 +22,13 @@ fis
   .match('*.{css,js,html}', {
     useHash: false
   })
+  // .set('deploy', {
+  //   receiver: 'http://dbl-dev-rd22.vm.baidu.com:8343/receiver',
+  //   from: '/',
+  //   subOnly: true,
+  //   to: '/home/work/webroot/templates/templates/eva_zhidaorder_gao'
+  // })
+
 
 // fis3 release production
 fis
