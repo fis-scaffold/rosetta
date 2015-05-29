@@ -1,4 +1,4 @@
-<element name="r-sample" on-attached={onclick}>
+<element name="r-sample" onAttached={onclick}>
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
     <style>
     :host {
@@ -36,6 +36,18 @@
 
         {
           (function() {
+            var test = [],
+                obj = {a:1212,b:2323};
+
+            for (var i in obj) {
+              test.push(<div>{i}</div>);
+            }
+            return test;
+          })()
+        }
+
+        {
+          (function() {
             if (true) {
               var a = <div>sdsd</div>
             }
@@ -55,7 +67,7 @@
     <script type="text/javascript">
     Rosetta.register('r-sample', function(tag) {
         function onclick() {
-            console.log('blabla');
+            alert('blabla');
         }
 
         tag.toggle = function() {
