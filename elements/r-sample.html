@@ -57,6 +57,7 @@
 
       </ul>
       <a ref="a" onClick={onclick}>
+        点我点我
         <content selector="p"></content>
       </a>
 
@@ -65,7 +66,10 @@
     </template>
     <script type="text/javascript" src="/static/lib.js"></script>
     <script type="text/javascript">
-    Rosetta.register('r-sample', function(tag) {
+    Rosetta.register('r-sample',
+      // 大幅度
+
+     function(tag) {
         function onclick() {
             alert('blabla');
         }

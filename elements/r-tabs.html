@@ -74,7 +74,7 @@
     }
     </style>
     <template>
-        <ul class="nav" ref="ul">
+        <ul class="nav" ref="ul" onClick={aaaclick}>
           {(attrs.items || []).map(function(item, index) {
             // item.title 为 tabs 的标题
             // item.content 为 tabs 的内容，
@@ -93,6 +93,8 @@
             )
           })}
         </ul>
+
+        <a href={aaa}>我是链接测试：{aaa}</a>
 
         <div ref="viewport" class="r-viewport content">
           {(attrs.items || []).map(function(item, index) {
@@ -122,7 +124,9 @@
     <script type="text/javascript" src="../static/jquery.min.js"></script>
 
     <script type="text/javascript">
-    Rosetta.register('r-tabs', function(tag) {
+    Rosetta.register('r-tabs',
+      // fsdf
+      function(tag) {
       // var $ = Zepto;
 
       // 初始化 attribues
@@ -145,6 +149,8 @@
         }
       };
 
+      var aaa = 'http://www.baidu.com';
+
       tag.switchTo = function(index) {
         index = index % attrs.items.length;
 
@@ -162,6 +168,10 @@
         attrs.index = index;
 
       };
+
+      function aaaclick() {
+        alert(111);
+      }
 
       function onAttached() {
         $(tag.refs.ul).on('click', 'li', function() {
