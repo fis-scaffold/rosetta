@@ -571,7 +571,7 @@ hr {
                     completed = 'checked';
                   }
 
-                  arr.push(<li index={index}><div class="view"><input class="toggle" type="checkbox" onClick={toggle} /><label>{item.title}</label><button class="destroy" onClick={deleteLi}></button></div></li>);
+                  arr.push(<li><div class="view"><input class="toggle" type="checkbox" onClick={toggle} index={index} /><label>{item.title}</label><button class="destroy" onClick={deleteLi}></button></div></li>);
 
                   return arr;
             })}
@@ -592,7 +592,7 @@ hr {
         }
 
         function deleteLi(e) {
-            var index = parseInt($(e.target).parent().parent().attr('index'), 10);
+            var index = parseInt($(e.target).attr('index'), 10);
             var list = tag.attrs.list;
 
             list.splice(index, 1);
