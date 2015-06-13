@@ -5,7 +5,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 button {
     margin: 0;
     padding: 0;
@@ -571,7 +570,7 @@ hr {
                     completed = 'checked';
                   }
 
-                  arr.push(<li><div class="view"><input class="toggle" type="checkbox" onClick={toggle} index={index} /><label>{item.title}</label><button class="destroy" onClick={deleteLi}></button></div></li>);
+                  arr.push(<li key={Math.random()}><div class="view"><input class="toggle" type="checkbox" onClick={toggle} index={index} /><label>{item.title}</label><button class="destroy" onClick={deleteLi}></button></div></li>);
 
                   return arr;
             })}

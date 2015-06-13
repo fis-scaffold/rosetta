@@ -26,7 +26,7 @@
     <div id="wrap">
 
         <div class="body">
-<!--             <link rel="import" href="/elements/r-tabs.html" />
+            <link rel="import" href="/elements/r-tabs.html" />
             {%$ref='tabs2'%}
             {%$aa='lalala'%}
             {%$items=[
@@ -44,12 +44,12 @@
                 ]
             ]%}
             <r-tabs class="sdsd"></r-tabs>
-            <r-tabs items={%json_encode($items)%} class="r-element {%$aa%}" ref={%$ref%}>
+            <r-tabs data='{"items":{%json_encode($items)%}, "ref":"{%$ref%}"}' class="r-element {%$aa%}">
               <div class="content1">内容 1</div>
               <div class="content2">内容 2</div>
               <div class="content3">内容 3</div>
             </r-tabs>
- -->
+
             <link rel="import" href="/elements/r-todoapp.html" />
 
         <section id="todoapp">
@@ -62,7 +62,7 @@
                 <input id="toggle-all" type="checkbox" />
                 <label for="toggle-all">Mark all as complete</label>
 
-                <r-todoapp ref="aaa" list='[]' class="r-element r-invisible">
+                <r-todoapp data='{"ref":"aaa", "list":[], "adsd": {"d":1, "c":3}}' class="r-element r-invisible">
 
                 </r-todoapp>
             </section>
@@ -109,6 +109,28 @@
         }
 
         Rosetta.ready(function() {
+            alert('all elements render done');
+            var tabs2 = Rosetta.ref('tabs2');
+            var slider = Rosetta.ref('slider');
+            tabs2.switchTo(1);
+            tabs2.on('attributeChange', function() {
+                console.log(tabs2.attrs.items[0]);
+            });
+
+            tabs2.update({
+                items: [
+                    {
+                        title: 'gaojiexuan',
+                        content: '内容1'
+                    },
+
+                    {
+                        title: '选项卡2',
+                        content: '内容2'
+                    }
+                ]
+            });
+
             $(document.body).on('keypress', function(e) {
                 submitChange(e);
             });

@@ -74,7 +74,7 @@
     }
     </style>
     <template>
-        <ul class="nav" ref="ul" onClick={aaaclick}>
+        <ul class="nav" ref="ul">
           {(attrs.items || []).map(function(item, index) {
             // item.title 为 tabs 的标题
             // item.content 为 tabs 的内容，
@@ -115,7 +115,7 @@
         </div>
 
       <link rel="import" href="/elements/r-sample.html">
-      <r-sample list="[1,2,3]">
+      <r-sample data='{"list":[1,2,3]}'>
 
       </r-sample>
 
