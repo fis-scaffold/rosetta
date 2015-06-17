@@ -69,7 +69,10 @@
     Rosetta.register('r-sample',
       // 大幅度
 
-     function(tag) {
+        function(tag) {
+       tag.attrs = {
+        list: []
+       };
         function onclick() {
             alert('blabla');
         }

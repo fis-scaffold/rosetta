@@ -2,7 +2,9 @@ fis.set('project.files', '*.{html,tpl}');
 
 fis
   .match('*.{html,tpl}', {
-    parser: fis.plugin('rosetta')
+    parser: fis.plugin('rosetta', {
+      compileUsage: false
+    })
   })
   .match('*.tpl', {
     release: '/template/$0'

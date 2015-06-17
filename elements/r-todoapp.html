@@ -560,25 +560,64 @@ hr {
 
 </style>
     <template>
-        <ul id="todo-list">
-            {(attrs.list || []).map(function(item, index) {
-                  var arr = [];
+        <section id="todoapp">
+            <header id="header">
+                <h1>todos</h1>
+                <input id="new-todo" placeholder="What needs to be done?" autofocus onKeyPress={submitChange}/>
+            </header>
 
-                  var completed = '';
+            <section id="main">
+                <input id="toggle-all" type="checkbox" />
+                <label for="toggle-all">Mark all as complete</label>
 
-                  if (item.completed) {
-                    completed = 'checked';
-                  }
+                <ul id="todo-list">
+                    {(attrs.list || []).map(function(item, index) {
+                          var arr = [];
 
-                  arr.push(<li key={Math.random()}><div class="view"><input class="toggle" type="checkbox" onClick={toggle} index={index} /><label>{item.title}</label><button class="destroy" onClick={deleteLi}></button></div></li>);
+                          var completed = '';
 
-                  return arr;
-            })}
-        </ul>
+                          if (item.completed) {
+                            completed = 'checked';
+                          }
+
+                          arr.push(<li key={Math.random()}><div class="view"><input class="toggle" type="checkbox" onClick={toggle} index={index} /><label>{item.title}</label><button class="destroy" onClick={deleteLi}></button></div></li>);
+
+                          return arr;
+                    })}
+                </ul>
+            </section>
+
+            <footer id="footer">
+                <content selector="a">
+                </content>
+                <span id="todo-count">
+                    <strong>
+                    </strong>
+
+                </span>
+                <ul id="filters">
+                    <li>
+                        <a class="selected" href="#/"></a>
+                    </li>
+                    <li>
+                        <a href="#/active"></a>
+                    </li>
+                    <li>
+                        <a href="#/completed"></a>
+                    </li>
+                </ul>
+            </footer>
+        </section>
+
     </template>
 
     <script type="text/javascript">
     Rosetta.register('r-todoapp', function(tag) {
+        tag.attrs = {
+            list: [],
+            ref: '',
+            adad: {}
+        };
         function toggle (e) {
             var $el = $(e.target);
             if ($el.attr('checked') != 'checked') {
@@ -600,6 +639,23 @@ hr {
                 list: list || []
             });
 
+        }
+
+        function submitChange (e) {
+            var $newtodo = $(e.target);
+            if (e.which === 13 && $newtodo.val()) {
+                var tag = Rosetta.ref('aaa');
+
+                tag.attrs.list.push({
+                    completed: '',
+                    title: $newtodo.val().trim()
+                });
+
+                tag.update({
+                    list: tag.attrs.list
+                });
+                $newtodo.val('');
+            }
         }
 
     });
