@@ -2,85 +2,51 @@
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
     <style>
     :host {
-      background: blue;
+        background: blue;
     }
+
     :host a {
-      color: yellow;
+        color: yellow;
     }
     </style>
     <template>
-      <!--comment-->
-      <link rel="import" href="/elements/r-sampleb.html">
-      <r-sampleb class="dsdfsdsd">
-        <p>121
-        </p>
-      </r-sampleb>
-      <ul>
-        {
-          (function() {
-            var arr = [];
-            var bbb = [];
-            if (attrs.list) {
-              arr.push(1);
-              (attrs.list || []).map(function(item, index) {
-                var className = 'bla-' + index;
-
-                arr.push(<li class={className}>{item}</li>);
-              })
-            }
-
-            bbb.push(<div class="aaaaaaa"><span>your name</span>{arr}</div>)
-            return bbb;
-          })()
-        }
-
-        {
-          (function() {
-            var test = [],
-                obj = {a:1212,b:2323};
-
-            for (var i in obj) {
-              test.push(<div>{i}</div>);
-            }
-            return test;
-          })()
-        }
-
-        {
-          (function() {
-            if (true) {
-              var a = <div>sdsd</div>
-            }
-            return a;
-          })()
-        }
-
-      </ul>
-      <a ref="a" onClick={onclick}>
+        <!--comment-->
+        <link rel="import" href="/elements/r-sampleb.html">
+        <r-sampleb class="dsdfsdsd">
+            <p>121
+            </p>
+        </r-sampleb>
+        <ul>
+            { (function() { var arr = []; var bbb = []; if (attrs.list) { arr.push(1); (attrs.list || []).map(function(item, index) { var className = 'bla-' + index; arr.push(
+            <li class={className}>{item}</li>); }) } bbb.push(
+            <div class="aaaaaaa"><span>your name</span>{arr}</div>) return bbb; })() } { (function() { var test = [], obj = {a:1212,b:2323}; for (var i in obj) { test.push(
+            <div>{i}</div>); } return test; })() } { (function() { if (true) { var a =
+            <div>sdsd</div>
+            } return a; })() }
+        </ul>
+        <a ref="a" onClick={onclick}>
         点我点我
         <content selector="p"></content>
       </a>
-
-      <content selector="ul"></content>
-
+        <content selector="ul"></content>
     </template>
     <script type="text/javascript" src="/static/lib.js"></script>
     <script type="text/javascript">
     Rosetta.register('r-sample',
-      // 大幅度
+        // 大幅度
 
         function(tag) {
-       tag.attrs = {
-        list: []
-       };
-        function onclick() {
-            alert('blabla');
-        }
+            tag.attrs = {
+                list: []
+            };
 
-        tag.toggle = function() {
+            function onclick() {
+                alert('blabla');
+            }
 
-        };
-    });
+            tag.toggle = function() {
 
+            };
+        });
     </script>
 </element>
