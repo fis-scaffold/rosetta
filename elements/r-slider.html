@@ -1,0 +1,23 @@
+<element name="r-slider" onAttached={onAttached}>
+    <style>
+        :host {
+        }
+    </style>
+    <template>
+        <div ref="blend-slider" class="blend-slider">
+            <content select='.blend-slides'>
+
+            </content>
+        </div>
+    </template>
+    <script type="text/javascript">
+        Rosetta.register('r-slider', function(tag) {
+            function onAttached() {
+                $(tag.refs['blend-slider']).slider({
+                    'speed': 2000,
+                    'ratio': 'small'
+                });
+            }
+        });
+    </script>
+</element>

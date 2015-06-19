@@ -107,7 +107,7 @@
             return (
               <div class={clsName}>
                 {item.content ? item.content : (
-                  <content selector={item.selector}></content>
+                  <content select={item.selector}></content>
                 )}
               </div>
             )
@@ -115,7 +115,7 @@
         </div>
 
       <link rel="import" href="/elements/r-sample.html">
-      <r-sample data='{"list":[1,2,3]}'>
+      <r-sample list='[1,2,3]'>
 
       </r-sample>
 

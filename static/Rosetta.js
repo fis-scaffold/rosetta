@@ -977,6 +977,7 @@ var plainDom = {
 module.exports = plainDom;
 },{}],19:[function(require,module,exports){
 /*@require ./rosetta.css*/
+/** Rosetta v1.0.1**/
 
 var _refers = {},
     _elemClass = {},
@@ -1019,7 +1020,7 @@ function attributeToAttrs(name, value) {
         // filter out 'mustached' values, these are to be
         // get original value
         var currentValue = this.attrs[name];
-        if (!_allRendered) {
+        if (typeof currentValue != typeof value) {
             // deserialize Boolean or Number values from attribute
             value = deserializeValue(value, currentValue);
         }
@@ -1032,6 +1033,7 @@ function attributeToAttrs(name, value) {
   }
 
 }
+
 
 function updateRefs(obj, dom) {
     for (var key in obj.refs) {
@@ -1197,7 +1199,7 @@ function render(vTree, root, force) {
 
                 tmp.appendChild(n);
             }
-            var selector = content.getAttribute('selector');
+            var selector = content.getAttribute('select');
             var result = query(selector, tmp);
 
 
@@ -1244,6 +1246,8 @@ function create(type, attr) {
     if (!isString(type)) {
         return;
     }
+
+    attr = attr || {};
 
     var childrenContent = [].slice.call(arguments, 2);
 
