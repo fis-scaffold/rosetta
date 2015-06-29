@@ -3,13 +3,11 @@
 <head>
     <title>My Application</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/static/style.css" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <!-- 添加 data-framework 字段的js，编译处理的时候会解析为需要优先加载的，会被放置到其他script的上面 -->
-    <script type="text/javascript" data-framework src="../static/Rosetta.js"></script>
+    <script type="text/javascript" data-framework src="/components/rosetta/Rosetta.js"></script>
 
-    <script type="text/javascript" data-framework src="../static/jquery.min.js"></script>
 </head>
 <body>
     <div id="wrap">

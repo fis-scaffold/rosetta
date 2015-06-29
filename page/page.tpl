@@ -4,5 +4,7 @@
   <link rel="import" href="/elements/r-tabs.html" />
   <r-tabs></r-tabs>
 
-  <script type="text/javascript" src="/static/lib.js"></script>
+  <link rel="import" href="/elements/r-todoapp.html" />
+  <r-todoapp></r-todoapp>
+
 {%/block%}

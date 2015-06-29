@@ -1,0 +1,12 @@
+{
+  "protocol": "github",
+  "gihub": {
+    "author": "fis-components"
+  },
+  "dependencies": [
+    "jquery@^1.9.1",
+    "jquery-ui",
+    "rosetta@^1.0.1",
+    "gitlab:Rosetta-components/boost-slider"
+  ]
+}
