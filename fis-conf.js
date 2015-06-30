@@ -1,4 +1,4 @@
-fis.set('project.files', '*.{html,tpl}');
+// fis.set('project.files', '*.{html,tpl}');
 
 fis
     .match('*.{html,tpl}', {
