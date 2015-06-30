@@ -4,9 +4,9 @@
     "author": "fis-components"
   },
   "dependencies": [
-    "github:fis-components/jquery@^1.9.1",
-    "github:fis-components/jquery-ui",
-    "github:fis-components/rosetta@^1.0.1",
+    "jquery@^1.9.1",
+    "jquery-ui",
+    "rosetta@^1.0.1",
     "gitlab:Rosetta-components/boost-slider"
   ]
 }
