@@ -1,6 +1,6 @@
 {
   "protocol": "github",
-  "gihub": {
+  "github": {
     "author": "fis-components"
   },
   "dependencies": [
