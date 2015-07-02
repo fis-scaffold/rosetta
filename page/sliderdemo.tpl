@@ -13,7 +13,7 @@
     <div id="wrap">
         <div class="body">
             <link rel="import" href="/components/boost-slider/r-slider.html" />
-            <r-slider list='[{"text":"这是图片1的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片2的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片3的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片4的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"}]'>
+            <r-slider list='[{"title":"这是图片1的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片2的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片3的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片4的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"}]'>
             </r-slider>
         </div>
     </div>
