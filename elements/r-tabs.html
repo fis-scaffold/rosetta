@@ -94,8 +94,6 @@
           })}
         </ul>
 
-        <a href={aaa}>我是链接测试：{aaa}</a>
-
         <div ref="viewport" class="r-viewport content">
           {(attrs.items || []).map(function(item, index) {
             var clsName = 'panel';
@@ -113,13 +111,6 @@
             )
           })}
         </div>
-
-      <link rel="import" href="/elements/r-sample.html">
-      <r-sample list='[1,2,3]'>
-
-      </r-sample>
-
-
     </template>
     <script type="text/javascript" src="../static/jquery.min.js"></script>
 
@@ -142,11 +133,7 @@
             title: '选项卡2',
             content: '内容2'
           }
-        ],
-
-        event: function() {
-          alert(1);
-        }
+        ]
       };
 
       var aaa = 'http://www.baidu.com';
@@ -168,10 +155,6 @@
         attrs.index = index;
 
       };
-
-      function aaaclick() {
-        alert(111);
-      }
 
       function onAttached() {
         $(tag.refs.ul).on('click', 'li', function() {
