@@ -6,7 +6,7 @@
   "dependencies": [
     "github:fis-components/jquery@^1.9.1",
     "github:fis-components/jquery-ui",
-    "github:fis-components/rosetta@^1.0.1",
+    "github:fis-components/rosetta@^1.0.2",
     "gitlab:Rosetta-components/boost-slider"
   ]
 }
