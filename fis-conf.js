@@ -29,7 +29,7 @@ fis
 
     .match('::packager', {
         postpackager: fis.plugin('rosetta', {
-
+            allInOne: true
         })
     });
 

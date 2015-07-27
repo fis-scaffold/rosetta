@@ -5,6 +5,10 @@
   <r-tabs></r-tabs>
 
   <link rel="import" href="/elements/r-todoapp.html" />
-  <r-todoapp></r-todoapp>
+  <r-todoapp list='[{"title":1212112,"completed":true}]'></r-todoapp>
 
+
+  <script type="text/javascript">
+
+  </script>
 {%/block%}

@@ -1,4 +1,4 @@
-<element name="r-sample" onAttached={onclick}>
+<element name="r-sample">
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
     <style>
     :host {
@@ -20,9 +20,9 @@
           (function() {
             var arr = [];
             var bbb = [];
-            if (attrs.list) {
+            if (list) {
               arr.push(1);
-              (attrs.list || []).map(function(item, index) {
+              (list || []).map(function(item, index) {
                 var className = 'bla-' + index;
 
                 arr.push(<li class={className}>{item}</li>);
@@ -67,22 +67,52 @@
     </template>
     <script type="text/javascript" src="/static/lib.js"></script>
     <script type="text/javascript">
-    Rosetta.register('r-sample',
-      // 大幅度
+    // Rosetta.register('r-sample',
+    //   // 大幅度
 
-     function(tag) {
-        tag.attrs = {
-            list: []
-        };
+    //  function(tag) {
+    //     tag.attrs = {
+    //         list: []
+    //     };
 
-        function onclick() {
-            alert('blabla');
+    //     function onclick() {
+    //         alert('blabla');
+    //     }
+
+    //     tag.toggle = function() {
+
+    //     };
+    // });
+
+      Rosetta({
+        is: 'r-sample',
+        properties: {
+          list: Array
+        },
+
+        attached: function () {
+
+        },
+
+        created: function () {
+
+        },
+
+        dettached: function () {
+
+        },
+
+        attributeChanged: function () {
+
+        },
+
+        toggle: function (argument) {
+
+        },
+        onclick: function () {
+          alert("sfsfs");
         }
-
-        tag.toggle = function() {
-
-        };
-    });
+      });
 
     </script>
 </element>

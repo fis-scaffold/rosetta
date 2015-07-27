@@ -1,4 +1,4 @@
-<element name="r-tabs" onAttached={onAttached}>
+<element name="r-tabs">
     <style type="text/css">
     /*Structor*/
     :host .nav {
@@ -75,14 +75,14 @@
     </style>
     <template>
         <ul class="nav" ref="ul">
-          {(attrs.items || []).map(function(item, index) {
+          {(items || []).map(function(item, i) {
             // item.title 为 tabs 的标题
             // item.content 为 tabs 的内容，
             // item.selector 与 content 二选一
 
             var clsName = '';
 
-            if (attrs.index === index) {
+            if (i === index) {
               clsName = 'r-state-active';
             }
 
@@ -97,10 +97,10 @@
         <a href={aaa}>我是链接测试：{aaa}</a>
 
         <div ref="viewport" class="r-viewport content">
-          {(attrs.items || []).map(function(item, index) {
+          {(items || []).map(function(item, i) {
             var clsName = 'panel';
 
-            if (attrs.index === index) {
+            if (i === index) {
               clsName += ' r-state-active';
             }
 
@@ -124,61 +124,83 @@
     <script type="text/javascript" src="../static/jquery.min.js"></script>
 
     <script type="text/javascript">
-    Rosetta.register('r-tabs',
-      // fsdf
-      function(tag) {
-      // var $ = Zepto;
+      Rosetta({
+        is: 'r-tabs',
 
-      // 初始化 attribues
-      var attrs = tag.attrs = {
-        index: 0,
-        items: [
-          {
-            title: '选项卡1',
-            content: '内容1'
+        aaa: 'http://www.baidu.com',
+
+        properties: {
+          index: {
+            type: Number,
+            value: 0
+          },
+          items: {
+            type: Array,
+            value: [
+              {
+                title: '选项卡1',
+                content: '内容1'
+              },
+
+              {
+                title: '选项卡2',
+                content: '内容2'
+              }
+            ]
           },
 
-          {
-            title: '选项卡2',
-            content: '内容2'
+          event: {
+            type: Function,
+            value: function() {
+              alert(1);
+            }
           }
-        ],
+        },
 
-        event: function() {
-          alert(1);
+        switchTo: function(index) {
+          index = index % this.items.length;
+
+          if (index === this.index) {
+            return;
+          }
+
+          console.log('switch to %d', index);
+          this.update({
+            index: index
+          });
+
+          $(this.$.ul).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
+          $(this.$.viewport).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
+          this.index = index;
+        },
+
+        aaaclick: {
+          type: Function,
+          value: function () {
+            alert(111);
+          }
+        },
+
+        attached: function () {
+          var self = this;
+          $(this.$.ul).on('click', 'li', function() {
+            self.switchTo($(this).index());
+            return false;
+          });
+        },
+
+        created: function () {
+
+        },
+
+        dettached: function () {
+
+        },
+
+        attributeChanged: function () {
+
         }
-      };
 
-      var aaa = 'http://www.baidu.com';
-
-      tag.switchTo = function(index) {
-        index = index % attrs.items.length;
-
-        if (index === attrs.index) {
-          return;
-        }
-
-        console.log('switch to %d', index);
-        tag.update({
-          index: index
-        });
-
-        $(tag.refs.ul).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
-        $(tag.refs.viewport).children().removeClass('r-state-active').eq(index).addClass('r-state-active');
-        attrs.index = index;
-
-      };
-
-      function aaaclick() {
-        alert(111);
-      }
-
-      function onAttached() {
-        $(tag.refs.ul).on('click', 'li', function() {
-          tag.switchTo($(this).index());
-          return false;
-        });
-      }
-    });
+      });
     </script>
 </element>

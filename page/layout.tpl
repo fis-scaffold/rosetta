@@ -18,12 +18,12 @@
           <r-sample>
             <p>显示一下嘛</p>
 
-            <r-slider class="a" list='[{"text":"这是图片1的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片2的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片3的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片4的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"}]'>
+            <r-slider class="a" list='[{"title":"这是图片1的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片2的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片3的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片4的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"}]'>
             </r-slider>
 
             <div class="aaa">
               <div>
-                <r-slider class="b" list='[{"text":"这是图片1的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片2的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片3的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"text":"这是图片4的标题","img":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"}]'>
+                <r-slider class="b" list='[{"title":"这是图片1的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片2的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片3的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"},{"title":"这是图片4的标题","src":"http://pic.4j4j.cn/upload/pic/20130530/f41069c61a.jpg"}]'>
                 </r-slider>
               </div>
             </div>
