@@ -70,8 +70,8 @@ fis
         optimizer: fis.plugin('png-compressor')
     })
 
-    .match('::packager', {
-        postpackager: fis.plugin('rosetta', {
-            allInOne: true
-        })
-    });
+    // .match('::packager', {
+    //     postpackager: fis.plugin('rosetta', {
+    //         allInOne: true
+    //     })
+    // });

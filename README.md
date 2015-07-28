@@ -1,5 +1,4 @@
 # Rosetta 模板
-
 ## 安装 fis3
 
 `npm install fis3 -g`

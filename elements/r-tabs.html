@@ -94,8 +94,6 @@
           })}
         </ul>
 
-        <a href={aaa}>我是链接测试：{aaa}</a>
-
         <div ref="viewport" class="r-viewport content">
           {(items || []).map(function(item, i) {
             var clsName = 'panel';
@@ -113,13 +111,6 @@
             )
           })}
         </div>
-
-      <link rel="import" href="/elements/r-sample.html">
-      <r-sample list='[1,2,3]'>
-
-      </r-sample>
-
-
     </template>
     <script type="text/javascript" src="../static/jquery.min.js"></script>
 
@@ -156,6 +147,7 @@
             }
           }
         },
+
 
         switchTo: function(index) {
           index = index % this.items.length;
