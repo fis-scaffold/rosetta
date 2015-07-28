@@ -1,6 +1,6 @@
 {
   "name": "RosettaApp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Rosetta template for fis scaffold",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/fis-scaffold/rosetta",
   "dependencies": {
-    "fis3-parser-rosetta": "^1.0.0",
-    "fis3-postpackager-rosetta": "^1.0.0"
+    "fis3-parser-rosetta": "^2.0.0",
+    "fis3-postpackager-rosetta": "^2.0.0",
+    "fis3-preprocessor-rosetta-import": "^1.0.0"
   }
 }

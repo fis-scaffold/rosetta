@@ -27,6 +27,10 @@ fis
         release: '/static/$1'
     })
 
+    .match('*.{tpl,html,js}', {
+      preprocessor: fis.plugin('rosetta-import')
+    })
+
     .match('::packager', {
         postpackager: fis.plugin('rosetta', {
             allInOne: true
