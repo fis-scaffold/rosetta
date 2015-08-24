@@ -45,3 +45,9 @@ fis3 release production -d ./output
 ```bash
 fis3 init element
 ```
+
+
+## 预览
+```
+    http://127.0.0.1:8080/page/slider.html
+```
